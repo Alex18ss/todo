@@ -335,7 +335,7 @@ body {
 .wrapper {
     display: flex;
     align-items: flex-start;
-    gap: 150px;
+    gap: 100px;
     justify-content: start;
     margin-left: 150px;
     
