@@ -1,2 +1,2 @@
 # todo
-Task managment
+Task management
