@@ -337,7 +337,7 @@ body {
     align-items: flex-start;
     gap: 100px;
     justify-content: start;
-    margin-left: 150px;
+    margin-left: 50px;
     
 }
 
@@ -497,4 +497,8 @@ body {
     display: flex;
     gap: 20px;
     align-items: center;
+}
+
+.extra-con {
+    margin-left: 15px;
 }
