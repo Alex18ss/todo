@@ -25,6 +25,8 @@ addBtn.onclick = function() {
 closeBtn.onclick = function() {
     dialog.classList.remove('show')
     dialog.classList.add('hide')
+    text.value = ""
+
 }
 
 
