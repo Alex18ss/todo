@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="popup hide">
+        <div class="container">
+            <form id="newTask">
+                <label>
+                    <input type="radio" name="radio" checked="" value="#easy">
+                    <span>#easy</span>
+                </label>
+                <label>
+                    <input type="radio" name="radio" value="#mediun">
+                    <span>#mediun</span>
+                </label>
+                <label>
+                    <input type="radio" name="radio" value="#hard">
+                    <span>#hard</span>
+                </label>
+                <input type="text" name="text" class="input" placeholder="Type here..." id="text">
+                <button class="ui-btn">
+                    <span>
+                      Create
+                    </span>
+                  </button>
+            </form>
+        </div>
+        <button class="close-btn">
+            <span class="shadow"></span>
+            <span class="edge"></span>
+            <span class="front text"> Close
+            </span>
+          </button>
+    </div>
+    <header>
+        <div class="extra-con">
+            <h1>Task management</h1>
+            <div class="filter">
+</div>
+            <div class="add_task">
+                <div tabindex="0" class="plusButton">
+                    <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                        <g mask="url(#mask0_21_345)">
+                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z">
+                            </path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="wrapper">
+            <div class="todo column">
+                <h2>To do</h2>
+                <div class="item">
+                    <div class="tag" id="tag">#tag</div>
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </div>
+            <div class="doing column">
+                <h2>Doing</h2>
+            </div>
+            <div class="done column">
+                <h2>Done</h2>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="main.js"></script>
+
+</html>
