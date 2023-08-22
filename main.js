@@ -1,5 +1,5 @@
 let addBtn = document.querySelector('.plusButton')
-let dialog = document.querySelector('.popup')
+let dialog = document.querySelector('.dop')
 let closeBtn = document.querySelector('.close-btn')
 let todo = document.querySelector('.todo')
 let radioBtns = document.getElementsByName('radio')

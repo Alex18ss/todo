@@ -171,7 +171,7 @@
     box-shadow: 20px 20px 60px #c5c5c5,
            -20px -20px 60px #ffffff;
     transition: 0.3s;
-    width: 250px;
+    width: 270px;
     margin-bottom: 30px;
    }
    
@@ -331,6 +331,7 @@ body {
     background-color: #f0e5d1;
     margin: 0;
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden
 }
 .wrapper {
     display: flex;
@@ -371,13 +372,13 @@ body {
 .container {
     margin-bottom: 150px;
     font-size: 22px;
-    margin-left: 100px;
+    margin-top: 25px;
 }
 
 .close-btn {
     position: absolute;
-    right: 62.5%;
-    bottom: -45%;
+    left: 35%;
+    bottom: 0;
     position: relative;
     border: none;
     background: transparent;
@@ -387,6 +388,7 @@ body {
     transition: filter 250ms;
     user-select: none;
     touch-action: manipulation;
+    width: 100px;
 }
 
 .shadow {
@@ -478,19 +480,23 @@ body {
     background-color: transparent;
     margin-bottom: -10px;
     text-align: start;
-    
-    
 }
+
+
 
 .popup input {
     display: block;
 }
 
 .hide {
-    display: none;
+    /* display: none; */
+    transform: translateX(1000px);
+    transition: all .5s ease-in;
 }
 .show {
     display: flex;
+    transform: translateX(0px);
+    transition: all .5s ease-out;
 }
 
 .extra-con {

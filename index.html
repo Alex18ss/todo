@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Task management</title>
+    <link rel="shortcut icon"
+        href="https://static.vecteezy.com/system/resources/previews/006/800/492/original/project-tracking-goal-tracker-task-completion-or-checklist-to-remind-project-progress-concept-businessman-project-manager-holding-big-pencil-to-check-completed-tasks-in-project-management-timeline-vector.jpg">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,45 +14,48 @@
 </head>
 
 <body>
-    <div class="popup hide">
-        <div class="container">
-            <form id="newTask">
-                <label>
-                    <input type="radio" name="radio" checked="" value="#easy">
-                    <span>#easy</span>
-                </label>
-                <label>
-                    <input type="radio" name="radio" value="#mediun">
-                    <span>#mediun</span>
-                </label>
-                <label>
-                    <input type="radio" name="radio" value="#hard">
-                    <span>#hard</span>
-                </label>
-                <input type="text" name="text" class="input" placeholder="Type here..." id="text">
-                <button class="ui-btn">
-                    <span>
-                      Create
-                    </span>
-                  </button>
-            </form>
+    <div class="dop hide">
+        <div class="popup">
+            <div class="container">
+                <form id="newTask">
+                    <label>
+                        <input type="radio" name="radio" checked="" value="#easy">
+                        <span>#easy</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="radio" value="#mediun">
+                        <span>#mediun</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="radio" value="#hard">
+                        <span>#hard</span>
+                    </label>
+                    <input type="text" name="text" class="input" placeholder="Type here..." id="text">
+                    <button class="ui-btn">
+                        <span>
+                            Create
+                        </span>
+                    </button>
+                </form>
+            </div>
+            <button class="close-btn">
+                <span class="shadow"></span>
+                <span class="edge"></span>
+                <span class="front text"> Close
+                </span>
+            </button>
         </div>
-        <button class="close-btn">
-            <span class="shadow"></span>
-            <span class="edge"></span>
-            <span class="front text"> Close
-            </span>
-          </button>
     </div>
     <header>
         <div class="extra-con">
             <h1>Task management</h1>
-            <div class="filter"></div>  
+            <div class="filter"></div>
             <div class="add_task">
                 <div tabindex="0" class="plusButton">
                     <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
                         <g mask="url(#mask0_21_345)">
-                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z">
+                            <path
+                                d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z">
                             </path>
                         </g>
                     </svg>
