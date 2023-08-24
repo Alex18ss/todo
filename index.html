@@ -19,15 +19,15 @@
             <div class="container">
                 <form id="newTask">
                     <label>
-                        <input type="radio" name="radio" checked="" value="#easy">
+                        <input type="radio" name="radio" checked="" value="easy">
                         <span>#easy</span>
                     </label>
                     <label>
-                        <input type="radio" name="radio" value="#mediun">
+                        <input type="radio" name="radio" value="medium">
                         <span>#mediun</span>
                     </label>
                     <label>
-                        <input type="radio" name="radio" value="#hard">
+                        <input type="radio" name="radio" value="hard">
                         <span>#hard</span>
                     </label>
                     <input type="text" name="text" class="input" placeholder="Type here..." id="text">
@@ -68,8 +68,16 @@
             <div class="todo column">
                 <h2>To do</h2>
                 <div class="item">
-                    <div class="tag" id="tag">#tag</div>
+                    <div class="tag tag-easy" id="tag"></div>
                     <p>Lorem ipsum dolor sit amet.</p>
+                    <label for="progress">Progress</label>
+                    <select name="" id="progress" class="progress">
+                        <option value="todo">to do</option>
+                        <option value="doing">doing</option>
+                        <option value="done">done</option>
+                    </select>
+                    <button class="edit-task">&#128394;</button>
+                    <button class="delete-task">&times;</button>
                 </div>
             </div>
             <div class="doing column">
@@ -82,5 +90,4 @@
     </main>
 </body>
 <script src="main.js"></script>
-
 </html>
