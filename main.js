@@ -170,9 +170,7 @@ newTask.onsubmit = function(evt) {
         });
         toLocalStorage(baseData)
     }
-
-// button to confirm editing
-
+    
     else if (createConfirmBtn.textContent == 'Confirm'){
         const dataId = dialog.getAttribute('data-id')
         console.log(dataId)
@@ -203,4 +201,4 @@ newTask.onsubmit = function(evt) {
 
 // clear all tasks
 
-```now nothing here...```
+// '''now nothing here'''
