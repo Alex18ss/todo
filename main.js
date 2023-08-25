@@ -6,33 +6,40 @@ let radioBtns = document.getElementsByName('radio')
 let createConfirmBtn = document.querySelector('.ui-btn span')
 let doing = document.querySelector('.doing')
 let done = document.querySelector('.done')
+let clearAllBtn = document.querySelector('.clear-all')
 
+
+// all todo stuff
 let baseData = JSON.parse(localStorage.getItem('yourList')) || []
 
+const updateItems = () => {
+    todo.innerText = ''
+    doing.innerText = ''
+    done.innerText = ''
+    baseData.forEach(df => {
+        if (df.status == 'todo') {
+            todo.append(createItem(df))
+        }
+        else if (df.status == 'doing') {
+            doing.append(createItem(df))
+        }
+        else if (df.status == 'done') {
+            done.append(createItem(df))
+        }
+        
+    });
+}
+// setting local storage
 const toLocalStorage = (dataSet) => {
     localStorage.setItem('yourList', JSON.stringify(dataSet))
 }
  if (baseData.length) {
-        todo.innerText = ''
-        doing.innerText = ''
-        done.innerText = ''
-        baseData.forEach(df => {
-            if (df.status == 'todo') {
-                todo.append(createItem(df))
-            }
-            else if (df.status == 'doing') {
-                doing.append(createItem(df))
-            }
-            else if (df.status == 'done') {
-                done.append(createItem(df))
-            }
-            
-        });
+        updateItems()
  }
 
 
 
-
+// func for creating new task 
 
 function createItem(object) {
     const item = document.createElement('div')
@@ -63,8 +70,6 @@ function createItem(object) {
     const optDone = document.createElement('option')
     optDone.value = 'done'
     optDone.textContent = 'done'
-
-    
     
     const editBtn = document.createElement('button')
     editBtn.classList.add('edit-task')
@@ -79,28 +84,17 @@ function createItem(object) {
 
     selection.value = object.status
 
+// changing tasks progress
     selection.onchange = function(){
         // const column = document.querySelector('.' + selection.value)
         object.status = selection.value
-        todo.innerText = ''
-        doing.innerText = ''
-        done.innerText = ''
-        baseData.forEach(df => {
-            if (df.status == 'todo') {
-                todo.append(createItem(df))
-            }
-            else if (df.status == 'doing') {
-                doing.append(createItem(df))
-            }
-            else if (df.status == 'done') {
-                done.append(createItem(df))
-            }
-            
-        });
+        updateItems()
         toLocalStorage(baseData)
         // column.append(item)
 
     }
+
+// edit btn (picture of the pen on the task)
 
     editBtn.onclick = function() {
         dialog.classList.remove('hide')
@@ -116,37 +110,29 @@ function createItem(object) {
 
     }
 
+// delet the task (picture of the cross on the task)
+
     delBtn.onclick = function() {
         baseData = baseData.filter(df => {
             return df.itemId != object.itemId
         })
-        todo.innerText = ''
-        doing.innerText = ''
-        done.innerText = ''
-        baseData.forEach(df => {
-            if (df.status == 'todo') {
-                todo.append(createItem(df))
-            }
-            else if (df.status == 'doing') {
-                doing.append(createItem(df))
-            }
-            else if (df.status == 'done') {
-                done.append(createItem(df))
-            }
-            
-        });
+        updateItems()
         toLocalStorage(baseData)
     }
 
     return item
 }
 
+// button to open the panel for adding and editing a task
 
 addBtn.onclick = function() {
     dialog.classList.remove('hide')
     dialog.classList.add('show')
     createConfirmBtn.textContent = 'Create'
 }
+
+
+// button to close the panel for adding and editing a task
 
 closeBtn.onclick = function() {
     dialog.classList.remove('show')
@@ -155,6 +141,7 @@ closeBtn.onclick = function() {
 
 }
 
+// create and confirm btns
 
 newTask.onsubmit = function(evt) {
     evt.preventDefault()
@@ -163,6 +150,8 @@ newTask.onsubmit = function(evt) {
         return
     }
     
+// add button on panel
+
     if (createConfirmBtn.textContent == 'Create'){
         const df = {tag: '', title: '', status: 'todo', itemId: 'id' + String(Date.now())}
         for (let radioBtn of radioBtns) {
@@ -181,6 +170,9 @@ newTask.onsubmit = function(evt) {
         });
         toLocalStorage(baseData)
     }
+
+// button to confirm editing
+
     else if (createConfirmBtn.textContent == 'Confirm'){
         const dataId = dialog.getAttribute('data-id')
         console.log(dataId)
@@ -204,23 +196,11 @@ newTask.onsubmit = function(evt) {
                 // tagEditor.classList.add('tag-' + radioBtn.value)
             }
         }
-        todo.innerText = ''
-        doing.innerText = ''
-        done.innerText = ''
-        baseData.forEach(df => {
-            if (df.status == 'todo') {
-                todo.append(createItem(df))
-            }
-            else if (df.status == 'doing') {
-                doing.append(createItem(df))
-            }
-            else if (df.status == 'done') {
-                done.append(createItem(df))
-            }
-            
-        });
+        updateItems()
         toLocalStorage(baseData)
     }   
 }
 
+// clear all tasks
 
+```now nothing here...```
