@@ -4,6 +4,35 @@ let closeBtn = document.querySelector('.close-btn')
 let todo = document.querySelector('.todo')
 let radioBtns = document.getElementsByName('radio')
 let createConfirmBtn = document.querySelector('.ui-btn span')
+let doing = document.querySelector('.doing')
+let done = document.querySelector('.done')
+
+let baseData = JSON.parse(localStorage.getItem('yourList')) || []
+
+const toLocalStorage = (dataSet) => {
+    localStorage.setItem('yourList', JSON.stringify(dataSet))
+}
+ if (baseData.length) {
+        todo.innerText = ''
+        doing.innerText = ''
+        done.innerText = ''
+        baseData.forEach(df => {
+            if (df.status == 'todo') {
+                todo.append(createItem(df))
+            }
+            else if (df.status == 'doing') {
+                doing.append(createItem(df))
+            }
+            else if (df.status == 'done') {
+                done.append(createItem(df))
+            }
+            
+        });
+ }
+
+
+
+
 
 function createItem(object) {
     const item = document.createElement('div')
@@ -34,6 +63,8 @@ function createItem(object) {
     const optDone = document.createElement('option')
     optDone.value = 'done'
     optDone.textContent = 'done'
+
+    
     
     const editBtn = document.createElement('button')
     editBtn.classList.add('edit-task')
@@ -46,9 +77,28 @@ function createItem(object) {
     selection.append(optTodo, optDoing, optDone)
     item.append(tag, title, labelForSel, selection, editBtn, delBtn)
 
+    selection.value = object.status
+
     selection.onchange = function(){
-        const column = document.querySelector('.' + selection.value)
-        column.append(item)
+        // const column = document.querySelector('.' + selection.value)
+        object.status = selection.value
+        todo.innerText = ''
+        doing.innerText = ''
+        done.innerText = ''
+        baseData.forEach(df => {
+            if (df.status == 'todo') {
+                todo.append(createItem(df))
+            }
+            else if (df.status == 'doing') {
+                doing.append(createItem(df))
+            }
+            else if (df.status == 'done') {
+                done.append(createItem(df))
+            }
+            
+        });
+        toLocalStorage(baseData)
+        // column.append(item)
 
     }
 
@@ -67,7 +117,25 @@ function createItem(object) {
     }
 
     delBtn.onclick = function() {
-        item.remove()
+        baseData = baseData.filter(df => {
+            return df.itemId != object.itemId
+        })
+        todo.innerText = ''
+        doing.innerText = ''
+        done.innerText = ''
+        baseData.forEach(df => {
+            if (df.status == 'todo') {
+                todo.append(createItem(df))
+            }
+            else if (df.status == 'doing') {
+                doing.append(createItem(df))
+            }
+            else if (df.status == 'done') {
+                done.append(createItem(df))
+            }
+            
+        });
+        toLocalStorage(baseData)
     }
 
     return item
@@ -96,29 +164,63 @@ newTask.onsubmit = function(evt) {
     }
     
     if (createConfirmBtn.textContent == 'Create'){
-        const df = {tag: '', title: '', itemId: 'id' + String(Date.now())}
+        const df = {tag: '', title: '', status: 'todo', itemId: 'id' + String(Date.now())}
         for (let radioBtn of radioBtns) {
             if (radioBtn.checked) {
                 df.tag = radioBtn.value
             }
         }
         df.title = text.value
-        todo.append(createItem(df))
+        baseData.push(df)
+        const filteredData = baseData.filter(df => {
+            return df.status == 'todo'
+        })
+        todo.innerText = ''
+        filteredData.forEach(df => {
+            todo.append(createItem(df))
+        });
+        toLocalStorage(baseData)
     }
     else if (createConfirmBtn.textContent == 'Confirm'){
         const dataId = dialog.getAttribute('data-id')
-        const selectEditor = document.getElementById(dataId)
-        const itemEditor = selectEditor.parentElement
+        console.log(dataId)
+        const itemIndex = baseData.findIndex(df => {return df.itemId == dataId})
+        console.log(itemIndex)
+       
+        // const selectEditor = document.getElementById(dataId)
+        // const itemEditor = selectEditor.parentElement
 
-        const titleEditor = itemEditor.querySelector('p')
-        titleEditor.textContent = text.value
+        // const titleEditor = itemEditor.querySelector('p')
+        // titleEditor.textContent = text.value
+        // const tagEditor = itemEditor.querySelector('.tag')
 
-        const tagEditor = itemEditor.querySelector('.tag')
+        // tagEditor.classList.remove('tag-easy', 'tag-medium', 'tag-hard')
+        
+        baseData[itemIndex].title = text.value
+
         for (let radioBtn of radioBtns) {
             if (radioBtn.checked) {
-                tagEditor.classList.add('tag-' + radioBtn.value)
+                baseData[itemIndex].tag = radioBtn.value
+                // tagEditor.classList.add('tag-' + radioBtn.value)
             }
         }
-        
-    }
+        todo.innerText = ''
+        doing.innerText = ''
+        done.innerText = ''
+        baseData.forEach(df => {
+            if (df.status == 'todo') {
+                todo.append(createItem(df))
+            }
+            else if (df.status == 'doing') {
+                doing.append(createItem(df))
+            }
+            else if (df.status == 'done') {
+                done.append(createItem(df))
+            }
+            
+        });
+        toLocalStorage(baseData)
+    }   
 }
+
+

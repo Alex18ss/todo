@@ -14,6 +14,55 @@
 </head>
 
 <body>
+    
+    <header>
+        <div class="extra-con">
+            <h1>Task management</h1>
+            <div class="filter"></div>
+            <div class="add_task">
+                <div tabindex="0" class="plusButton">
+                    <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                        <g mask="url(#mask0_21_345)">
+                            <path
+                                d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z">
+                            </path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="wrapper">
+            <div class="column">
+                <h2>To do</h2>
+                <div class="todo">
+                    <div class="item">
+                        <div class="tag tag-easy" id="tag"></div>
+                        <p>Lorem ipsum dolor sit amet.</p>
+                        <label for="progress">Progress</label>
+                        <select name="" id="progress" class="progress">
+                            <option value="todo">to do</option>
+                            <option value="doing">doing</option>
+                            <option value="done">done</option>
+                        </select>
+                        <button class="edit-task">&#128394;</button>
+                        <button class="delete-task">&times;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <h2>Doing</h2>
+                <div class="doing">
+                </div>
+            </div>
+            <div class="column">
+                <h2>Done</h2>
+                <div class="done">
+            </div>
+            </div>
+        </div>
+    </main>
     <div class="dop hide">
         <div class="popup">
             <div class="container">
@@ -24,7 +73,7 @@
                     </label>
                     <label>
                         <input type="radio" name="radio" value="medium">
-                        <span>#mediun</span>
+                        <span>#medium</span>
                     </label>
                     <label>
                         <input type="radio" name="radio" value="hard">
@@ -46,48 +95,6 @@
             </button>
         </div>
     </div>
-    <header>
-        <div class="extra-con">
-            <h1>Task management</h1>
-            <div class="filter"></div>
-            <div class="add_task">
-                <div tabindex="0" class="plusButton">
-                    <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                        <g mask="url(#mask0_21_345)">
-                            <path
-                                d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z">
-                            </path>
-                        </g>
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </header>
-    <main>
-        <div class="wrapper">
-            <div class="todo column">
-                <h2>To do</h2>
-                <div class="item">
-                    <div class="tag tag-easy" id="tag"></div>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                    <label for="progress">Progress</label>
-                    <select name="" id="progress" class="progress">
-                        <option value="todo">to do</option>
-                        <option value="doing">doing</option>
-                        <option value="done">done</option>
-                    </select>
-                    <button class="edit-task">&#128394;</button>
-                    <button class="delete-task">&times;</button>
-                </div>
-            </div>
-            <div class="doing column">
-                <h2>Doing</h2>
-            </div>
-            <div class="done column">
-                <h2>Done</h2>
-            </div>
-        </div>
-    </main>
 </body>
 <script src="main.js"></script>
 </html>

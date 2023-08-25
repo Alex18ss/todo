@@ -343,15 +343,17 @@ body {
 }
 
 .column {
-    /* background-color: rgb(189, 186, 186);
-    border-radius: 5px; */
-    border-radius: 44px;
-    background: #f0e5d1;
-    box-shadow:  29px 29px 58px #ccc3b2,
-             -29px -29px 58px #fffff0;
-    width: 400px;
-    text-align: center;
-    padding: 30px;
+  /* background-color: rgb(189, 186, 186);
+  border-radius: 5px; */
+  border-radius: 44px;
+  background: #f0e5d1;
+  box-shadow:  29px 29px 58px #ccc3b2,
+           -29px -29px 58px #fffff0;
+  width: 400px;
+  min-width: 315px;
+  text-align: center;
+  padding: 30px;
+
 }
 
 .popup {
@@ -359,14 +361,18 @@ body {
     border-radius: 44px;
     border-top-right-radius: 0px;
     width: 300px;
-    position: absolute;
-    right: 0;
     height: 500px;
     padding: 10px;
     justify-content: center;
     align-items: center;
     
-    
+}
+
+.dop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
 }
 
 .container {
@@ -470,6 +476,8 @@ body {
    }
    
 .item {
+  position: relative;
+  overflow-x: hidden;
   background-color: rgb(218, 218, 218);
   border-radius: 10px;
   font-size: 20px;
@@ -481,6 +489,11 @@ body {
   box-shadow: inset 5px 5px 10px #979084,
             inset -5px -5px 10px #ffffff;
 }
+
+.item p {
+  margin-right: 10px;
+}
+
 .tag {
   margin-left: 15px;
   text-align: start;
@@ -488,7 +501,10 @@ body {
   height: 15px;
   border-radius: 10px;
   background-color: #000000;
+
 }
+
+
 
 .tag-easy {
   background-color: #31e281;
@@ -534,12 +550,13 @@ body {
 
 
 .delete-task {
+  z-index: 10;
+  position: absolute;
   background-color: transparent;
   font-size: 30px;
   border: none;
-  position: relative;
-  left: 18%;
-  bottom: 82.5px;
+  right: 15px;
+  top: 10px;
   transition: font-size .1s;
 }
 
@@ -573,12 +590,13 @@ body {
 }
 
 .edit-task {
-  position: relative;
+  z-index: 10;
+  position: absolute;
   background-color: transparent;
   font-size: 25px;
   border: none;
   font-weight: 700;
-  left: 28%;
+  right: 15px;
 }
 
 .edit-task:hover {
