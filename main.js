@@ -12,6 +12,11 @@ let clearAllBtn = document.querySelector('.clear-all')
 // all todo stuff
 let baseData = JSON.parse(localStorage.getItem('yourList')) || []
 
+const popupHideShow = (toRemove, toShow) => {
+        dialog.classList.remove(toRemove)
+        dialog.classList.add(toShow)
+}
+
 const updateItems = () => {
     todo.innerText = ''
     doing.innerText = ''
@@ -97,8 +102,9 @@ function createItem(object) {
 // edit btn (picture of the pen on the task)
 
     editBtn.onclick = function() {
-        dialog.classList.remove('hide')
-        dialog.classList.add('show')
+        popupHideShow('hide', 'show')
+        // dialog.classList.remove()
+        // dialog.classList.add()
         dialog.setAttribute('data-id', object.itemId)
         text.value = title.textContent
         createConfirmBtn.textContent = 'Confirm'
@@ -126,8 +132,7 @@ function createItem(object) {
 // button to open the panel for adding and editing a task
 
 addBtn.onclick = function() {
-    dialog.classList.remove('hide')
-    dialog.classList.add('show')
+    popupHideShow('hide', 'show')
     createConfirmBtn.textContent = 'Create'
 }
 
@@ -135,8 +140,9 @@ addBtn.onclick = function() {
 // button to close the panel for adding and editing a task
 
 closeBtn.onclick = function() {
-    dialog.classList.remove('show')
-    dialog.classList.add('hide')
+    popupHideShow('show', 'hide')
+    // dialog.classList.remove()
+    // dialog.classList.add()
     text.value = ""
 
 }
