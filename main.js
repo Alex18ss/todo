@@ -19,27 +19,21 @@ const popupHideShow = (toRemove, toShow) => {
 
 const filterUpdate = (data, column) => {
     const existItem = createItem(data)
-        // if (filter.value != data.tag && filter.value != 'all' || !data.title.includes(search.value) && search.value.length) {
-        //     existItem.style.filter = 'grayscale(60%) blur(2px)'
-        // }
-
-        // if (filter.value == 'all' && !data.title.includes(search.value)){
-        //     existItem.style.filter = 'grayscale(60%) blur(2px)'
-        // }
-
-        // else if (!data.title.includes(search.value) && filter.value != data.tag && filter.value != 'all'){
-        //     existItem.style.filter = 'grayscale(60%) blur(2px)'
-        //     console.log(10)
-        // }
-
-        // else if (filter.value != data.tag && filter.value != 'all' && search.value.trim() == '') {
-        //     existItem.style.filter = 'grayscale(60%) blur(2px)'
-        // }
-        // else{
-        //     existItem.style.filter = ''
-        // }
-
-
+    if (filter.value == 'all' && search.value.trim().length == 0) {
+        existItem.style.filter = 'grayscale(0) blur(0)'
+    }
+    else if (filter.value == 'all' && search.value.trim().length != 0 && data.title.includes(search.value)){
+        existItem.style.filter = 'grayscale(0) blur(0)'
+    }
+    else if (data.tag == filter.value && search.value.trim().length != 0 && data.title.includes(search.value)){
+        existItem.style.filter = 'grayscale(0) blur(0)'
+    }
+    else if (data.tag == filter.value && search.value.trim().length == 0 && data.title.includes(search.value)){
+        existItem.style.filter = 'grayscale(0) blur(0)'
+    }
+    else {
+        existItem.style.filter = 'grayscale(60%) blur(2px)'
+    }
     column.append(existItem)
 }
 
