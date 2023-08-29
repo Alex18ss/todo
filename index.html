@@ -18,7 +18,16 @@
     <header>
         <div class="extra-con">
             <h1>Task management</h1>
-            <div class="filter"></div>
+            <div class="filter">
+                <label for="filter">Filter</label>
+                <select id="filter">
+                    <option value="all">all</option>
+                    <option value="easy">easy</option>
+                    <option value="medium">medium</option>
+                    <option value="hard">hard</option>
+                </select>
+                <input type="text" value="" id="search" placeholder="Search">
+            </div>
             <div class="add_task">
                 <div tabindex="0" class="plusButton">
                     <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">

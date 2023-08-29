@@ -17,19 +17,45 @@ const popupHideShow = (toRemove, toShow) => {
         dialog.classList.add(toShow)
 }
 
+const filterUpdate = (data, column) => {
+    const existItem = createItem(data)
+        // if (filter.value != data.tag && filter.value != 'all' || !data.title.includes(search.value) && search.value.length) {
+        //     existItem.style.filter = 'grayscale(60%) blur(2px)'
+        // }
+
+        // if (filter.value == 'all' && !data.title.includes(search.value)){
+        //     existItem.style.filter = 'grayscale(60%) blur(2px)'
+        // }
+
+        // else if (!data.title.includes(search.value) && filter.value != data.tag && filter.value != 'all'){
+        //     existItem.style.filter = 'grayscale(60%) blur(2px)'
+        //     console.log(10)
+        // }
+
+        // else if (filter.value != data.tag && filter.value != 'all' && search.value.trim() == '') {
+        //     existItem.style.filter = 'grayscale(60%) blur(2px)'
+        // }
+        // else{
+        //     existItem.style.filter = ''
+        // }
+
+
+    column.append(existItem)
+}
+
 const updateItems = () => {
     todo.innerText = ''
     doing.innerText = ''
     done.innerText = ''
     baseData.forEach(df => {
         if (df.status == 'todo') {
-            todo.append(createItem(df))
+            filterUpdate(df, todo)
         }
         else if (df.status == 'doing') {
-            doing.append(createItem(df))
+            filterUpdate(df, doing)
         }
         else if (df.status == 'done') {
-            done.append(createItem(df))
+            filterUpdate(df, done)
         }
         
     });
@@ -147,6 +173,10 @@ closeBtn.onclick = function() {
 
 }
 
+filter.onchange = () => {
+    updateItems()
+}
+
 // create and confirm btns
 
 newTask.onsubmit = function(evt) {
@@ -172,7 +202,7 @@ newTask.onsubmit = function(evt) {
         })
         todo.innerText = ''
         filteredData.forEach(df => {
-            todo.append(createItem(df))
+            filterUpdate(df, todo)
         });
         toLocalStorage(baseData)
     }
@@ -207,4 +237,15 @@ newTask.onsubmit = function(evt) {
 
 // clear all tasks
 
-// '''now nothing here'''
+clearAllBtn.onclick = () => {
+    baseData = []
+    toLocalStorage(baseData)
+    updateItems()
+}
+
+search.oninput = () => {
+    if (search.value.trim() == ''){
+        text.value = ''
+    }
+    updateItems()
+}
