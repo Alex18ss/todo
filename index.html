@@ -14,7 +14,6 @@
 </head>
 
 <body>
-    
     <header>
         <div class="extra-con">
             <h1>Task management</h1>
@@ -45,27 +44,30 @@
         <div class="wrapper">
             <div class="column">
                 <h2>To do</h2>
+                <button class="add-to-column" data-status="todo">+</button>
                 <div class="todo">
                 </div>
             </div>
             <div class="column">
                 <h2>Doing</h2>
+                <button class="add-to-column" data-status="doing">+</button>
                 <div class="doing">
                 </div>
             </div>
             <div class="column">
                 <h2>Done</h2>
+                <button class="add-to-column" data-status="done">+</button>
                 <div class="done">
-            </div>
+                </div>
             </div>
         </div>
         <button class="cta clear-all">
             <span>Clear all</span>
             <svg viewBox="0 0 13 10" height="10px" width="15px">
-              <path d="M1,5 L11,5"></path>
-              <polyline points="8 1 12 5 8 9"></polyline>
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
             </svg>
-          </button>
+        </button>
     </main>
     <div class="dop hide">
         <div class="popup">
@@ -101,4 +103,5 @@
     </div>
 </body>
 <script src="main.js"></script>
+
 </html>

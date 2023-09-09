@@ -7,10 +7,14 @@ let createConfirmBtn = document.querySelector('.ui-btn span')
 let doing = document.querySelector('.doing')
 let done = document.querySelector('.done')
 let clearAllBtn = document.querySelector('.clear-all')
-
+let currentItem = null
+let currentObject = {}
+let columnsArray = [todo.parentElement, doing.parentElement, done.parentElement]
+let columnStatus = null
 
 // all todo stuff
 let baseData = JSON.parse(localStorage.getItem('yourList')) || []
+
 
 const popupHideShow = (toRemove, toShow) => {
         dialog.classList.remove(toRemove)
@@ -109,6 +113,64 @@ function createItem(object) {
 
     selection.value = object.status
 
+    item.setAttribute('draggable', true)
+
+    item.ondragstart = function() {
+        currentObject = object
+        this.classList.add('drag-start')
+        currentItem = this
+    }
+
+    item.ondragenter = function(e) {
+        e.stopPropagation()
+        if (this != currentItem) {
+            this.classList.add('drag-enter-over')
+        }
+    }
+
+    item.ondrop = function(e) {
+        e.stopPropagation()
+        if (currentItem !== this){
+            const draggedItem = baseData.findIndex((elem) => elem.itemId == currentObject.itemId)
+            const droppedItem = baseData.findIndex((elem) => elem.itemId == object.itemId)
+            const clonedData = baseData[draggedItem]
+            const clonedStatus = clonedData.status
+            clonedData.status = baseData[droppedItem].status
+            baseData[draggedItem] = baseData[droppedItem]
+            baseData[draggedItem].status = clonedStatus
+            baseData[droppedItem] = clonedData
+            toLocalStorage(baseData)
+            updateItems()
+            columnsArray.forEach(clmn => {clmn.classList.remove('overed')})
+        }
+    }
+
+
+    item.ondragover = function(e) {
+        e.stopPropagation()
+        if (this != currentItem) {
+            this.classList.add('drag-enter-over')
+        }
+        return false
+    }
+
+    item.ondragleave = function(e) {
+        e.stopPropagation()
+        this.classList.remove('drag-enter-over')
+    }
+
+    item.ondragend = function() {
+        this.classList.remove('drag-start')
+        const items = document.querySelectorAll('.item')
+        items.forEach((elem) => {
+            elem.classList.remove('drag-enter-over')
+        })
+        
+
+    }
+
+
+
 // changing tasks progress
     selection.onchange = function(){
         // const column = document.querySelector('.' + selection.value)
@@ -148,6 +210,75 @@ function createItem(object) {
 
     return item
 }
+
+columnsArray.forEach(clm => {
+    clm.ondragstart = function(e) {
+        e.stopPropagation()
+        if(!clm.classList.contains('overed')){
+            clm.classList.add('overed')
+        }
+    }
+
+    clm.ondragenter = function(e) {
+        e.stopPropagation()
+        if(!clm.classList.contains('overed')){
+            clm.classList.add('overed')
+        }
+        return false
+    }
+
+    // clm.ondragleave = function(e) {
+    //     e.stopPropagation()
+    //     if(clm.classList.contains('overed')){
+    //         clm.classList.remove('overed')
+    //     }
+    //     return false
+    // }
+
+    clm.querySelector('.add-to-column').ondragenter = () => {
+       columnStatus = clm.querySelector('.add-to-column').getAttribute('data-status')
+
+    }
+
+    clm.querySelector('.add-to-column').ondragleave = () => {
+        setTimeout(() => {columnStatus = null}, 100)
+        
+     }
+
+    clm.ondragend = function(e) {
+        e.stopPropagation()
+        if (columnStatus) {
+            currentObject.status = columnStatus
+            let newBaseData = baseData.filter((df) => df.itemId != currentObject.itemId)
+            newBaseData.unshift(currentObject)
+            baseData = newBaseData
+            toLocalStorage(baseData)
+            updateItems()
+            columnsArray.forEach(clmn => {clmn.classList.remove('overed')})
+        }
+
+        return false
+    }
+})
+
+
+// done.parentNode.ondragenter = function(e) {
+//     e.stopPropagation()
+//     if (!done.parentNode.classList.contains('bigger')) {
+//         done.parentNode.style.height = 100 + done.parentNode.clientHeight + 'px'
+//         done.parentNode.classList.add('bigger')
+//     }
+//     return false
+// }
+
+// done.parentNode.ondragleave = function(e) {
+//     e.stopPropagation()
+//     if (done.parentNode.classList.contains('bigger')) {
+//         done.parentNode.style.height = done.parentNode.clientHeight - 221.81 + 'px'
+//         done.parentNode.classList.remove('bigger')
+//     }
+//     return false
+// }
 
 // button to open the panel for adding and editing a task
 
